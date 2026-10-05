@@ -1,0 +1,135 @@
+{
+ "actions": [],
+ "autoname": "hash",
+ "creation": "2026-10-05 12:00:00.000000",
+ "description": "Tracks which Permission Group created or adopted a User Permission. Edited from Permission Studio.",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "permission_group",
+  "user",
+  "user_permission",
+  "column_break_main",
+  "reference_doctype",
+  "for_value",
+  "applicable_for",
+  "apply_to_all_doctypes",
+  "is_default",
+  "hide_descendants",
+  "adopted"
+ ],
+ "fields": [
+  {
+   "fieldname": "permission_group",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Permission Group",
+   "options": "Permission Group",
+   "read_only": 1,
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "user",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "User",
+   "options": "User",
+   "read_only": 1,
+   "reqd": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "user_permission",
+   "fieldtype": "Link",
+   "label": "User Permission",
+   "options": "User Permission",
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "column_break_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "DocType",
+   "options": "DocType",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "for_value",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Permitted Value",
+   "options": "reference_doctype",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "applicable_for",
+   "fieldtype": "Link",
+   "label": "Applicable For",
+   "options": "DocType",
+   "read_only": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "apply_to_all_doctypes",
+   "fieldtype": "Check",
+   "label": "Apply To All Document Types",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_default",
+   "fieldtype": "Check",
+   "label": "Is Default",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "hide_descendants",
+   "fieldtype": "Check",
+   "label": "Hide Descendants",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "description": "A matching User Permission already existed and was left in place.",
+   "fieldname": "adopted",
+   "fieldtype": "Check",
+   "label": "Adopted",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-05 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Permission Studio",
+ "name": "Permission Group Grant",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "delete": 1,
+   "export": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "select": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "user",
+ "track_changes": 1
+}

@@ -1,0 +1,89 @@
+{
+ "charts": [],
+ "content": "[{\"id\": \"fp_header\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>FrappePro</b></span><p class=\\\"text-muted\\\">Group users and choose the records they may see.</p>\", \"col\": 12}}, {\"id\": \"fp_shortcut_studio\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Studio\", \"col\": 4}}, {\"id\": \"fp_shortcut_group\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Group\", \"col\": 4}}, {\"id\": \"fp_shortcut_coverage\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Coverage\", \"col\": 4}}, {\"id\": \"fp_card\", \"type\": \"card\", \"data\": {\"card_name\": \"Permissions\", \"col\": 4}}]",
+ "creation": "2026-10-05 12:00:00.000000",
+ "custom_blocks": [],
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "hide_custom": 0,
+ "icon": "shield",
+ "idx": 0,
+ "is_hidden": 0,
+ "label": "FrappePro",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Permissions",
+   "link_count": 3,
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Permission Studio",
+   "link_to": "permission-studio",
+   "link_type": "Page",
+   "onboard": 1,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Permission Group",
+   "link_to": "Permission Group",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 1,
+   "label": "Permission Coverage",
+   "link_to": "Permission Coverage",
+   "link_type": "Report",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-10-05 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Permission Studio",
+ "name": "FrappePro",
+ "number_cards": [],
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "quick_lists": [],
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "sequence_id": 50.0,
+ "shortcuts": [
+  {
+   "color": "Blue",
+   "label": "Permission Studio",
+   "link_to": "permission-studio",
+   "type": "Page"
+  },
+  {
+   "color": "Green",
+   "label": "Permission Group",
+   "link_to": "Permission Group",
+   "type": "DocType"
+  },
+  {
+   "color": "Orange",
+   "label": "Permission Coverage",
+   "link_to": "Permission Coverage",
+   "type": "Report"
+  }
+ ],
+ "standard": 1,
+ "title": "FrappePro",
+ "type": "Workspace"
+}
