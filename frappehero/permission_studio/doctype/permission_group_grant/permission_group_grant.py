@@ -4,7 +4,7 @@
 from frappe.model.document import Document
 from frappe.utils import cint
 
-from frappepro.permission_studio.sync import release_user_permission
+from frappehero.permission_studio.sync import release_user_permission
 
 
 class PermissionGroupGrant(Document):

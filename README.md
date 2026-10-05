@@ -1,4 +1,4 @@
-# FrappePro
+# Frappe Hero
 
 Graphical permission groups for [Frappe](https://frappeframework.com). Group users, then choose the DocTypes and record values they are allowed to see.
 
@@ -11,13 +11,13 @@ Adding **Company → Acme** means those members only see Acme, not every company
 From your bench:
 
 ```bash
-bench get-app https://github.com/agilasoft/frappepro
-bench --site your-site install-app frappepro
+bench get-app https://github.com/agilasoft/frappehero
+bench --site your-site install-app frappehero
 bench --site your-site migrate
-bench build --app frappepro
+bench build --app frappehero
 ```
 
-Open **Permission Studio** from the desk search, the FrappePro workspace, or `/desk/permission-studio`.
+Open **Permission Studio** from the desk search, the Frappe Hero workspace, or `/desk/permission-studio`.
 
 On Frappe 15 the desk lives under `/app`, so the page is `/app/permission-studio`. The same workspace and awesome bar entry work there.
 
@@ -28,7 +28,7 @@ Requires Frappe 15 or 16. Only **System Manager** can open the studio.
 1. Create a group and give it a name.
 2. Add members one by one, or everyone who has a role.
 3. Add records: pick a DocType, search its values, and add the ones members may see.
-4. Save. FrappePro creates one User Permission per member and value.
+4. Save. Frappe Hero creates one User Permission per member and value.
 
 Useful filters on the group list:
 
@@ -55,7 +55,7 @@ The standard Permission Group form is still there if you prefer a document. It h
 | --- | --- |
 | Permission Group | Members and the values they may see |
 | Permission Group Grant | Which group is responsible for each User Permission |
-| User Permission | The restriction Frappe enforces. FrappePro marks the rows it owns |
+| User Permission | The restriction Frappe enforces. Frappe Hero marks the rows it owns |
 
 Two groups that allow the same value share one User Permission. It is removed only when the last group stops granting it.
 
@@ -64,13 +64,13 @@ Two groups that allow the same value share one User Permission. It is removed on
 Rule checks that do not need a site:
 
 ```bash
-python -m unittest frappepro.permission_studio.test_normalize
+python -m unittest frappehero.permission_studio.test_normalize
 ```
 
 On a site with the app installed:
 
 ```bash
-bench --site your-site run-tests --app frappepro
+bench --site your-site run-tests --app frappehero
 ```
 
 ## License
