@@ -22,5 +22,5 @@ htmlcov/
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
-frappepro/public/dist/
+frappehero/public/dist/
 *.log

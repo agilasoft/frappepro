@@ -1,6 +1,6 @@
 {
  "charts": [],
- "content": "[{\"id\": \"fp_header\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>FrappePro</b></span><p class=\\\"text-muted\\\">Group users and choose the records they may see.</p>\", \"col\": 12}}, {\"id\": \"fp_shortcut_studio\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Studio\", \"col\": 4}}, {\"id\": \"fp_shortcut_group\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Group\", \"col\": 4}}, {\"id\": \"fp_shortcut_coverage\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Coverage\", \"col\": 4}}, {\"id\": \"fp_card\", \"type\": \"card\", \"data\": {\"card_name\": \"Permissions\", \"col\": 4}}]",
+ "content": "[{\"id\": \"fp_header\", \"type\": \"header\", \"data\": {\"text\": \"<span class=\\\"h4\\\"><b>Frappe Hero</b></span><p class=\\\"text-muted\\\">Group users and choose the records they may see.</p>\", \"col\": 12}}, {\"id\": \"fp_shortcut_studio\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Studio\", \"col\": 4}}, {\"id\": \"fp_shortcut_group\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Group\", \"col\": 4}}, {\"id\": \"fp_shortcut_coverage\", \"type\": \"shortcut\", \"data\": {\"shortcut_name\": \"Permission Coverage\", \"col\": 4}}, {\"id\": \"fp_card\", \"type\": \"card\", \"data\": {\"card_name\": \"Permissions\", \"col\": 4}}]",
  "creation": "2026-10-05 12:00:00.000000",
  "custom_blocks": [],
  "docstatus": 0,
@@ -10,7 +10,7 @@
  "icon": "shield",
  "idx": 0,
  "is_hidden": 0,
- "label": "FrappePro",
+ "label": "Frappe Hero",
  "links": [
   {
    "hidden": 0,
@@ -51,7 +51,7 @@
  "modified": "2026-10-05 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "Permission Studio",
- "name": "FrappePro",
+ "name": "Frappe Hero",
  "number_cards": [],
  "owner": "Administrator",
  "parent_page": "",
@@ -84,6 +84,6 @@
   }
  ],
  "standard": 1,
- "title": "FrappePro",
+ "title": "Frappe Hero",
  "type": "Workspace"
 }

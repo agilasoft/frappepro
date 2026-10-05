@@ -3,7 +3,7 @@
 
 from frappe.model.document import Document
 
-from frappepro.permission_studio.sync import clear_group, sync_group, validate_group
+from frappehero.permission_studio.sync import clear_group, sync_group, validate_group
 
 
 class PermissionGroup(Document):

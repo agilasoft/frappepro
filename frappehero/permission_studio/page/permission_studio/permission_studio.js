@@ -1,4 +1,4 @@
-frappe.provide("frappepro");
+frappe.provide("frappehero");
 
 frappe.pages["permission-studio"].on_page_load = function (wrapper) {
 	const page = frappe.ui.make_app_page({
@@ -6,8 +6,8 @@ frappe.pages["permission-studio"].on_page_load = function (wrapper) {
 		title: __("Permission Studio"),
 		single_column: true,
 	});
-	frappe.require("/assets/frappepro/css/permission_studio.css");
-	wrapper.studio = new frappepro.Studio(wrapper, page);
+	frappe.require("/assets/frappehero/css/permission_studio.css");
+	wrapper.studio = new frappehero.Studio(wrapper, page);
 };
 
 frappe.pages["permission-studio"].on_page_show = function (wrapper) {
@@ -16,7 +16,7 @@ frappe.pages["permission-studio"].on_page_show = function (wrapper) {
 	}
 };
 
-frappepro.Studio = class Studio {
+frappehero.Studio = class Studio {
 	constructor(wrapper, page) {
 		this.wrapper = wrapper;
 		this.page = page;
@@ -119,7 +119,7 @@ frappepro.Studio = class Studio {
 	call(method, args) {
 		return frappe
 			.call({
-				method: `frappepro.permission_studio.api.${method}`,
+				method: `frappehero.permission_studio.api.${method}`,
 				args: args || {},
 			})
 			.then((response) => response.message);
@@ -128,7 +128,7 @@ frappepro.Studio = class Studio {
 	render_explainer() {
 		let dismissed = false;
 		try {
-			dismissed = localStorage.getItem("frappepro-hint") === "1";
+			dismissed = localStorage.getItem("frappehero-hint") === "1";
 		} catch (error) {
 			dismissed = false;
 		}
@@ -842,7 +842,7 @@ frappepro.Studio = class Studio {
 			this.clear_filter(target.dataset.filter);
 		} else if (action === "dismiss-hint") {
 			try {
-				localStorage.setItem("frappepro-hint", "1");
+				localStorage.setItem("frappehero-hint", "1");
 			} catch (error) {
 				// Ignore storage failures.
 			}

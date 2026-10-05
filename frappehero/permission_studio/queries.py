@@ -6,7 +6,7 @@ from __future__ import annotations
 import frappe
 from frappe.utils import cint, cstr
 
-from frappepro.permission_studio.normalize import (
+from frappehero.permission_studio.normalize import (
 	build_coverage_where,
 	build_group_where,
 	clamp_limit,

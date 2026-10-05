@@ -9,8 +9,8 @@ from frappe.custom.doctype.custom_field.custom_field import create_custom_fields
 CUSTOM_FIELDS: dict[str, list[dict]] = {
 	"User Permission": [
 		{
-			"fieldname": "frappepro_group",
-			"label": "FrappePro Group",
+			"fieldname": "frappehero_group",
+			"label": "Frappe Hero Group",
 			"fieldtype": "Link",
 			"options": "Permission Group",
 			"insert_after": "user",
@@ -21,14 +21,14 @@ CUSTOM_FIELDS: dict[str, list[dict]] = {
 			"description": "Permission Group that last synced this restriction.",
 		},
 		{
-			"fieldname": "frappepro_managed",
-			"label": "Managed by FrappePro",
+			"fieldname": "frappehero_managed",
+			"label": "Managed by Frappe Hero",
 			"fieldtype": "Check",
-			"insert_after": "frappepro_group",
+			"insert_after": "frappehero_group",
 			"read_only": 1,
 			"no_copy": 1,
 			"default": "0",
-			"description": "FrappePro created this User Permission and removes it when the group no longer grants it.",
+			"description": "Frappe Hero created this User Permission and removes it when the group no longer grants it.",
 		},
 	]
 }
