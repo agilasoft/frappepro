@@ -1,5 +1,5 @@
 {
- "app": "frappepro",
+ "app": "frappehero",
  "creation": "2026-10-05 12:00:00.000000",
  "docstatus": 0,
  "doctype": "Workspace Sidebar",
@@ -43,8 +43,8 @@
  "modified": "2026-10-05 12:00:00.000000",
  "modified_by": "Administrator",
  "module": "Permission Studio",
- "name": "FrappePro",
+ "name": "Frappe Hero",
  "owner": "Administrator",
  "standard": 1,
- "title": "FrappePro"
+ "title": "Frappe Hero"
 }

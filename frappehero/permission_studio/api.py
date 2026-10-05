@@ -9,7 +9,7 @@ import frappe
 from frappe import _
 from frappe.utils import cint, cstr, get_datetime
 
-from frappepro.permission_studio.normalize import (
+from frappehero.permission_studio.normalize import (
 	BLOCKED_DOCTYPES,
 	PermissionSetupError,
 	as_check,
@@ -20,7 +20,7 @@ from frappepro.permission_studio.normalize import (
 	prepare_members,
 	prepare_rules,
 )
-from frappepro.permission_studio.queries import (
+from frappehero.permission_studio.queries import (
 	coverage_rows,
 	coverage_total,
 	filter_options,
@@ -28,7 +28,7 @@ from frappepro.permission_studio.queries import (
 	preview_access,
 	value_labels,
 )
-from frappepro.permission_studio.sync import sync_group
+from frappehero.permission_studio.sync import sync_group
 
 
 def has_app_permission() -> bool:
@@ -89,7 +89,7 @@ def save_group(payload: str | dict) -> dict:
 	document.save()
 	return {
 		"group": _serialize_group(document),
-		"sync": document.flags.get("frappepro_sync_stats") or {},
+		"sync": document.flags.get("frappehero_sync_stats") or {},
 	}
 
 
@@ -102,7 +102,7 @@ def set_enabled(name: str, enabled: int | str = 1) -> dict:
 	document.save()
 	return {
 		"group": _serialize_group(document),
-		"sync": document.flags.get("frappepro_sync_stats") or {},
+		"sync": document.flags.get("frappehero_sync_stats") or {},
 	}
 
 
@@ -133,7 +133,7 @@ def duplicate_group(name: str) -> dict:
 		}
 	)
 	document.insert()
-	return {"group": _serialize_group(document), "sync": document.flags.get("frappepro_sync_stats") or {}}
+	return {"group": _serialize_group(document), "sync": document.flags.get("frappehero_sync_stats") or {}}
 
 
 @frappe.whitelist()

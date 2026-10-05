@@ -19,22 +19,22 @@ except ImportError:
 @unittest.skipUnless(frappe, "Frappe site is required")
 class TestPermissionGroup(FrappeTestCase):
 	def setUp(self):
-		from frappepro.install import ensure_custom_fields
+		from frappehero.install import ensure_custom_fields
 
 		ensure_custom_fields()
-		self.user = self._ensure_user("fp-one@example.com", "FP One")
-		self.other = self._ensure_user("fp-two@example.com", "FP Two")
+		self.user = self._ensure_user("fh-one@example.com", "FH One")
+		self.other = self._ensure_user("fh-two@example.com", "FH Two")
 		self._cleanup()
 
 	def tearDown(self):
 		self._cleanup()
 
 	def test_group_creates_and_removes_user_permissions(self):
-		group = self._group("FP Test Basic", ["Guest"])
+		group = self._group("FH Test Basic", ["Guest"])
 		permission = self._permission("Guest")
 		self.assertTrue(permission)
-		self.assertEqual(cint(permission.frappepro_managed), 1)
-		self.assertEqual(permission.frappepro_group, group.name)
+		self.assertEqual(cint(permission.frappehero_managed), 1)
+		self.assertEqual(permission.frappehero_group, group.name)
 
 		group.set("rules", [{"reference_doctype": "Role", "for_value": "All", "apply_to_all_doctypes": 1}])
 		group.save()
@@ -45,8 +45,8 @@ class TestPermissionGroup(FrappeTestCase):
 		self.assertFalse(self._permission("All"))
 
 	def test_shared_permission_survives_until_the_last_group(self):
-		first = self._group("FP Test Share A", ["Guest"])
-		second = self._group("FP Test Share B", ["Guest"])
+		first = self._group("FH Test Share A", ["Guest"])
+		second = self._group("FH Test Share B", ["Guest"])
 		permission = self._permission("Guest")
 		frappe.delete_doc("Permission Group", first.name)
 		self.assertTrue(frappe.db.exists("User Permission", permission.name))
@@ -54,7 +54,7 @@ class TestPermissionGroup(FrappeTestCase):
 		self.assertFalse(frappe.db.exists("User Permission", permission.name))
 
 	def test_disabling_lifts_restrictions(self):
-		group = self._group("FP Test Disable", ["Guest"])
+		group = self._group("FH Test Disable", ["Guest"])
 		group.enabled = 0
 		group.save()
 		self.assertFalse(self._permission("Guest"))
@@ -72,7 +72,7 @@ class TestPermissionGroup(FrappeTestCase):
 				"apply_to_all_doctypes": 1,
 			}
 		).insert(ignore_permissions=True)
-		group = self._group("FP Test Adopt", ["Guest"])
+		group = self._group("FH Test Adopt", ["Guest"])
 		grant = frappe.db.get_value(
 			"Permission Group Grant",
 			{"permission_group": group.name, "user": self.user, "for_value": "Guest"},
@@ -83,7 +83,7 @@ class TestPermissionGroup(FrappeTestCase):
 		self.assertEqual(grant.user_permission, manual.name)
 		frappe.delete_doc("Permission Group", group.name)
 		self.assertTrue(frappe.db.exists("User Permission", manual.name))
-		self.assertEqual(cint(frappe.db.get_value("User Permission", manual.name, "frappepro_managed")), 0)
+		self.assertEqual(cint(frappe.db.get_value("User Permission", manual.name, "frappehero_managed")), 0)
 
 	def test_conflicting_manual_default_is_rejected(self):
 		frappe.get_doc(
@@ -97,14 +97,14 @@ class TestPermissionGroup(FrappeTestCase):
 			}
 		).insert(ignore_permissions=True)
 		with self.assertRaises(frappe.ValidationError):
-			self._group("FP Test Conflict", ["Guest"], is_default=0)
+			self._group("FH Test Conflict", ["Guest"], is_default=0)
 
 	def test_administrator_and_bad_rules_are_rejected(self):
 		with self.assertRaises(frappe.ValidationError):
 			frappe.get_doc(
 				{
 					"doctype": "Permission Group",
-					"group_name": "FP Test Admin",
+					"group_name": "FH Test Admin",
 					"members": [{"user": "Administrator"}],
 					"rules": [{"reference_doctype": "Role", "for_value": "Guest", "apply_to_all_doctypes": 1}],
 				}
@@ -113,7 +113,7 @@ class TestPermissionGroup(FrappeTestCase):
 			frappe.get_doc(
 				{
 					"doctype": "Permission Group",
-					"group_name": "FP Test Narrow",
+					"group_name": "FH Test Narrow",
 					"members": [{"user": self.user}],
 					"rules": [
 						{
@@ -126,9 +126,9 @@ class TestPermissionGroup(FrappeTestCase):
 			).insert()
 
 	def test_studio_search_finds_the_group(self):
-		from frappepro.permission_studio.api import get_studio
+		from frappehero.permission_studio.api import get_studio
 
-		group = self._group("FP Test Searchable", ["All"])
+		group = self._group("FH Test Searchable", ["All"])
 		result = get_studio({"search": group.group_name, "user": self.user, "reference_doctype": "Role"})
 		self.assertEqual(result["total"], 1)
 		self.assertEqual(result["groups"][0]["name"], group.name)
@@ -157,7 +157,7 @@ class TestPermissionGroup(FrappeTestCase):
 		rows = frappe.get_all(
 			"User Permission",
 			filters={"user": self.user, "allow": "Role", "for_value": value},
-			fields=["name", "frappepro_managed", "frappepro_group"],
+			fields=["name", "frappehero_managed", "frappehero_group"],
 			limit=1,
 		)
 		return rows[0] if rows else None
@@ -177,7 +177,7 @@ class TestPermissionGroup(FrappeTestCase):
 
 	def _cleanup(self):
 		for name in frappe.get_all(
-			"Permission Group", filters={"group_name": ["like", "FP Test%"]}, pluck="name"
+			"Permission Group", filters={"group_name": ["like", "FH Test%"]}, pluck="name"
 		):
 			frappe.delete_doc("Permission Group", name, force=True, ignore_permissions=True)
 		for user in (getattr(self, "user", None), getattr(self, "other", None)):

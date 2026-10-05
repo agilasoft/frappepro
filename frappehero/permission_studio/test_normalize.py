@@ -3,7 +3,7 @@
 
 import unittest
 
-from frappepro.permission_studio.normalize import (
+from frappehero.permission_studio.normalize import (
 	BLOCKED_DOCTYPES,
 	PermissionSetupError,
 	build_coverage_where,

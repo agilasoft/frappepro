@@ -17,7 +17,7 @@ import frappe
 from frappe import _
 from frappe.utils import cint, cstr
 
-from frappepro.permission_studio.normalize import (
+from frappehero.permission_studio.normalize import (
 	PermissionSetupError,
 	as_check,
 	clean_group_name,
@@ -99,7 +99,7 @@ def sync_group(group) -> dict[str, int]:
 			).insert(ignore_permissions=True)
 
 	stats = {"applied": len(desired), "removed": removed}
-	group.flags.frappepro_sync_stats = stats
+	group.flags.frappehero_sync_stats = stats
 	return stats
 
 
@@ -127,14 +127,14 @@ def release_user_permission(user_permission: str | None, group: str | None, adop
 		{"user_permission": user_permission},
 		"permission_group",
 	)
-	managed = cint(frappe.db.get_value("User Permission", user_permission, "frappepro_managed"))
+	managed = cint(frappe.db.get_value("User Permission", user_permission, "frappehero_managed"))
 
 	if remaining:
 		if managed:
 			frappe.db.set_value(
 				"User Permission",
 				user_permission,
-				"frappepro_group",
+				"frappehero_group",
 				remaining,
 				update_modified=False,
 			)
@@ -144,23 +144,23 @@ def release_user_permission(user_permission: str | None, group: str | None, adop
 		frappe.delete_doc("User Permission", user_permission, ignore_permissions=True)
 		return
 
-	current = frappe.db.get_value("User Permission", user_permission, "frappepro_group")
+	current = frappe.db.get_value("User Permission", user_permission, "frappehero_group")
 	if current and current == group:
 		frappe.db.set_value(
 			"User Permission",
 			user_permission,
-			"frappepro_group",
+			"frappehero_group",
 			None,
 			update_modified=False,
 		)
 
 
 def _require_tracking_fields() -> None:
-	if frappe.db.has_column("User Permission", "frappepro_managed"):
+	if frappe.db.has_column("User Permission", "frappehero_managed"):
 		return
 	frappe.throw(
 		_(
-			"FrappePro has not finished installing its User Permission fields. "
+			"Frappe Hero has not finished installing its User Permission fields. "
 			"Run bench migrate on this site, then try again."
 		)
 	)
@@ -255,7 +255,7 @@ def _delete_grant(name: str) -> None:
 def _ensure_user_permission(group_name: str, user: str, rule: dict) -> tuple[str, int]:
 	existing = _find_user_permission(user, rule)
 	if existing:
-		adopted = 0 if cint(existing.frappepro_managed) else 1
+		adopted = 0 if cint(existing.frappehero_managed) else 1
 		if adopted and not _flags_match(existing, rule):
 			frappe.throw(
 				_(
@@ -278,8 +278,8 @@ def _ensure_user_permission(group_name: str, user: str, rule: dict) -> tuple[str
 			"applicable_for": rule["applicable_for"] or None,
 			"hide_descendants": rule["hide_descendants"],
 			"is_default": rule["is_default"],
-			"frappepro_group": group_name,
-			"frappepro_managed": 1,
+			"frappehero_group": group_name,
+			"frappehero_managed": 1,
 		}
 	)
 	try:
@@ -303,7 +303,7 @@ def _find_user_permission(user: str, rule: dict):
 			"applicable_for": cstr(rule["applicable_for"]),
 			"apply_to_all_doctypes": rule["apply_to_all_doctypes"],
 		},
-		fields=["name", "frappepro_managed", "is_default", "hide_descendants", "frappepro_group"],
+		fields=["name", "frappehero_managed", "is_default", "hide_descendants", "frappehero_group"],
 		limit=1,
 	)
 	return rows[0] if rows else None
@@ -337,8 +337,8 @@ def _update_managed_permission(name: str, group_name: str, rule: dict) -> None:
 	document = frappe.get_doc("User Permission", name)
 	document.is_default = rule["is_default"]
 	document.hide_descendants = rule["hide_descendants"]
-	document.frappepro_group = group_name
-	document.frappepro_managed = 1
+	document.frappehero_group = group_name
+	document.frappehero_managed = 1
 	try:
 		document.save(ignore_permissions=True)
 	except frappe.ValidationError:

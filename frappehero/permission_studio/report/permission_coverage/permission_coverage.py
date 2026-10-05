@@ -4,7 +4,7 @@
 import frappe
 from frappe import _
 
-from frappepro.permission_studio.queries import coverage_rows
+from frappehero.permission_studio.queries import coverage_rows
 
 
 def execute(filters=None):
