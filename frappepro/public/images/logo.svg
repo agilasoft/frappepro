@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="FrappePro">
+  <rect width="64" height="64" rx="14" fill="#0f766e"/>
+  <path fill="#fff" d="M32 10 50 18v14c0 11.2-7.2 19.4-18 22-10.8-2.6-18-10.8-18-22V18L32 10z"/>
+  <path fill="none" stroke="#0f766e" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" d="M24 32.5 29.2 38 40 26"/>
+</svg>
